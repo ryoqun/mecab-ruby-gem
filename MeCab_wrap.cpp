@@ -2388,7 +2388,7 @@ _wrap_Node_next_get(int argc, VALUE *argv, VALUE self) {
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_mecab_node_t, 0 |  0 );
 #ifdef HAVE_RUBY_ENCODING_H
   if (!NIL_P(vresult)) {
-    rb_enc_copy(vresult, self);
+    rb_ivar_set(vresult, rb_intern("@encoding"), rb_ivar_get(self, rb_intern("@encoding")));
   }
 #endif
   return vresult;
@@ -2936,7 +2936,7 @@ _wrap_Node_surface_get(int argc, VALUE *argv, VALUE self) {
   }
   vresult = SWIG_FromCharPtr((const char *)result);
 #ifdef HAVE_RUBY_ENCODING_H
-  rb_enc_copy(vresult, self);
+  rb_ivar_set(vresult, rb_intern("@encoding"), rb_ivar_get(self, rb_intern("@encoding")));
 #endif
   delete[] result;
   return vresult;
@@ -3114,7 +3114,7 @@ _wrap_Tagger_parseToNode(int argc, VALUE *argv, VALUE self) {
   }
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_mecab_node_t, 0 |  0 );
 #ifdef HAVE_RUBY_ENCODING_H
-  rb_enc_copy(vresult, argv[0]);
+  rb_ivar_set(vresult, rb_intern("@encoding"), rb_obj_encoding(argv[0]));
 #endif
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return vresult;
@@ -3171,7 +3171,7 @@ _wrap_Tagger_parseNBest(int argc, VALUE *argv, VALUE self) {
   vresult = SWIG_FromCharPtr((const char *)result);
 #ifdef HAVE_RUBY_ENCODING_H
   if (!NIL_P(vresult)) {
-    rb_enc_copy(vresult, argv[1]);
+    rb_ivar_set(vresult, rb_intern("@encoding"), rb_obj_encoding(argv[0]));
   }
 #endif
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
